@@ -27,7 +27,7 @@ final class LoginViewController: UIViewController {
             if error == nil,let access_token = result?["access_token"] as? String,let userName = result?["userName"] as? String {
                 self?.chatToken = access_token
                 if userName == "easemob" {
-                    YourAppUser.current.avatarURL = "https://a1.easemob.com/easemob/chatroom-uikit/chatfiles/fc14ab00-79f7-11ee-93f4-618a64affe88"
+                    YourAppUser.current.avatarURL = ChatroomRequest.shared.host+"/\(appkeyInfos.first ?? "")/\(appkeyInfos.last ?? "")/chatfiles/"+"fc14ab00-79f7-11ee-93f4-618a64affe88"
                 }
                 self?.login(user: YourAppUser.current, token: access_token)
             } else {
@@ -56,6 +56,8 @@ final class LoginViewController: UIViewController {
 }
 
 
+fileprivate let appkeyInfos = ChatClient.shared().options.appkey.components(separatedBy: "#")
+
 @objcMembers public final class YourAppUser: NSObject,UserInfoProtocol {
     
     static let current = YourAppUser()
@@ -66,7 +68,7 @@ final class LoginViewController: UIViewController {
     
     @UserDefault("ChatroomUserName", defaultValue: userNames.randomElement() ?? "") public var nickName
     
-    @UserDefault("ChatroomUserAvatar", defaultValue: "https://a1.easemob.com/easemob/chatroom-uikit/chatfiles/"+"\(avatars.randomElement() ?? "")") public var avatarURL
+    @UserDefault("ChatroomUserAvatar", defaultValue: ChatroomRequest.shared.host+"/\(appkeyInfos.first ?? "")/\(appkeyInfos.last ?? "")/chatfiles/"+"\(avatars.randomElement() ?? "")") public var avatarURL
     
     @UserDefault("ChatRoomUserID",defaultValue: generateRandomString(length: 16)) public var userId
         
