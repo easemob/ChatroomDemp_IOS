@@ -40,7 +40,7 @@ public struct ChatroomRequestHTTPMethod: RawRepresentable, Equatable, Hashable {
     
     @objc public static var shared = ChatroomRequest()
     
-    var host = "https://a1.easemob.com"
+    var host = <#您的服务器主机地址#>
     
     private lazy var config: URLSessionConfiguration = {
         //MARK: - session config

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let option = ChatroomUIKitInitialOptions.ChatOptions()
         option.enableConsoleLog = true
-        let error = ChatroomUIKitClient.shared.setup(with: "Your appkey", option: option)
+        let error = ChatroomUIKitClient.shared.setup(with: <#您的环信AppKey#>, option: option)
         if error != nil {
             consoleLogInfo("ChatroomUIKitClient init error:\(error?.errorDescription ?? "")", type: .debug)
         }
