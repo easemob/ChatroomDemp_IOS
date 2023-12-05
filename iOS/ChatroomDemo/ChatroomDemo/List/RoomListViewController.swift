@@ -71,7 +71,7 @@ final class RoomListViewController: UIViewController {
             self?.createRoom()
         }
         Theme.registerSwitchThemeViews(view: self)
-        ChatroomUIKit.Appearance.barrageCellStyle = .hideUserIdentity
+        ChatroomUIKit.Appearance.messageDisplayStyle = .hideUserIdentity
     }
     
     @objc private func fetchChatrooms() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ChatroomUIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -49,4 +50,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
 

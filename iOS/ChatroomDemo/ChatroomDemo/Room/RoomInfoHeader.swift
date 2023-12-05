@@ -45,7 +45,7 @@ final class RoomHeader: UIView {
     }()
     
     lazy var info: RoomInfoHeader = {
-        RoomInfoHeader(frame: CGRect(x: self.back.frame.maxX+4, y: 3, width: (self.frame.width/5.0)*3, height: self.frame.height-6)).backgroundColor(UIColor.theme.barrageLightColor2).cornerRadius(.large)
+        RoomInfoHeader(frame: CGRect(x: self.back.frame.maxX+4, y: 3, width: (self.frame.width*0.52), height: self.frame.height-6)).backgroundColor(UIColor.theme.barrageLightColor2).cornerRadius(.large)
     }()
     
     lazy var members: UIButton = {

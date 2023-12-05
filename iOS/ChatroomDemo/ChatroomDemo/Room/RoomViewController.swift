@@ -78,8 +78,9 @@ final class RoomViewController: UIViewController {
     }
     
     private func leaveRoom() {
+        self.roomView.inputBar.hiddenInputBar()
         if ChatroomContext.shared?.owner ?? false {
-            DialogManager.shared.showAlert(content: "离开后直播间立刻销毁，确定离开？", showCancel: true, showConfirm: true) { [weak self] in
+            DialogManager.shared.showAlert(content: "离开后直播间立刻销毁，确定离开？", showCancel: true, showConfirm: true,title: "销毁聊天室") { [weak self] in
                 self?.destroyRoom()
             }
         } else {
@@ -194,11 +195,11 @@ final class RoomViewController: UIViewController {
 
 //MARK: - When you called `self.roomView.addActionHandler(actionHandler: self)`.You'll receive chatroom view's click action events callback.
 extension RoomViewController : ChatroomViewActionEventsDelegate {
-    func onMessageBarrageClicked(message: ChatroomUIKit.ChatMessage) {
+    func onMessageClicked(message: ChatroomUIKit.ChatMessage) {
         //Statistical data
     }
     
-    func onMessageListBarrageLongPressed(message: ChatroomUIKit.ChatMessage) {
+    func onMessageLongPressed(message: ChatroomUIKit.ChatMessage) {
         //Statistical data
     }
     
@@ -208,7 +209,7 @@ extension RoomViewController : ChatroomViewActionEventsDelegate {
     
     func onExtensionBottomItemClicked(item: ChatroomUIKit.ChatBottomItemProtocol) {
         if item.type == 0 {
-            DialogManager.shared.showGiftsDialog(titles: ["Gifts"], gifts: [self.gift1])
+            DialogManager.shared.showGiftsDialog(titles: ["礼物列表"], gifts: [self.gift1])
         }
     }
     
@@ -218,17 +219,17 @@ extension RoomViewController : ChatroomViewActionEventsDelegate {
 //MARK: - When you called `ChatroomUIKitClient.shared.registerRoomEventsListener(listener: self)`.You'll implement these method.
 extension RoomViewController: RoomEventsListener {
     func userAccountDidRemoved() {
-        self.showToast(toast: "userAccountDidRemoved", duration: 2)
+        self.showToast(toast: "您的账户已被管理员移除", duration: 2)
         self.perform(#selector(exitRoom), with: nil, afterDelay: 1)
     }
     
     func userDidForbidden() {
-        self.showToast(toast: "userDidForbidden", duration: 2)
+        self.showToast(toast: "当前用户已被管理员封禁", duration: 2)
         self.perform(#selector(exitRoom), with: nil, afterDelay: 1)
     }
     
     func userAccountDidForcedToLogout(error: ChatroomUIKit.ChatError?) {
-        self.showToast(toast: "userAccountDidForcedToLogout:\(error?.errorDescription ?? "")", duration: 2)
+        self.showToast(toast: "用户账户已被强制登出:\(error?.errorDescription ?? "")", duration: 2)
         self.perform(#selector(exitRoom), with: nil, afterDelay: 1)
     }
     
@@ -238,7 +239,7 @@ extension RoomViewController: RoomEventsListener {
     
     func onUserLeave(roomId: String, userId: String) {
         //Statistical data
-        self.showToast(toast: "\(ChatroomContext.shared?.usersMap?[userId]?.nickName ?? userId) was left.", duration: 3)
+//        self.showToast(toast: "\(ChatroomContext.shared?.usersMap?[userId]?.nickName ?? userId) was left.", duration: 3)
     }
     
     
@@ -279,7 +280,7 @@ extension RoomViewController: RoomEventsListener {
     }
     
     func onUserBeKicked(roomId: String, reason: ChatroomUIKit.ChatroomBeKickedReason) {
-        self.showToast(toast: "You was kicked.", duration: 2)
+        self.showToast(toast: "当前用户已被踢.", duration: 2)
         self.perform(#selector(exitRoom), with: nil, afterDelay: 1)
     }
     
