@@ -1,0 +1,30 @@
+
+.video-container {
+    background-color: black;
+    height: calc(100vh - 60px);
+}
+
+.video-container video{
+   height: 100%;
+   width: 100%;
+}
+.header-icon-box{
+    gap: 16px;
+}
+.themeSwitch-box, .header-icon-box{
+    display: flex;
+    align-items: center;
+}
+
+.themeSwitch-box{
+    width: 54px;
+    height: 28px;
+    background-color: #E3E6E8;
+    border-radius: 14px;
+    padding: 2px;
+    box-sizing: border-box;
+    gap: 2px;
+}
+.theme-dark .themeSwitch-box{
+    background-color: #464e5382;
+}

@@ -1,0 +1,152 @@
+.roomlist-title{
+    position: absolute;
+    top: 0;
+    height: 60px;
+
+    color: #171A1C;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+}
+
+.theme-dark .roomlist-title{
+    color: #fff;
+}
+
+.cui-collapse-header{
+    flex-direction: column-reverse!important;
+    padding: 0!important;
+    display: flex;
+    align-items: end!important;
+}
+.cui-collapse-header>div:first-of-type{
+    height: calc(100% - 60px);
+   display: flex;
+   align-items: end;
+}
+.cui-collapse-icon{
+    /* width: 50px;
+    height: 50px; */
+    align-items: end;
+    margin: 18px;
+}
+
+.chatroom-list-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chatroom-list-contracted{
+    width: 66px;
+
+    overflow-y: auto;
+    height: calc(100% - 100px);
+    overflow-x: hidden;
+}
+.not-allowed, .not-allowed button, .not-allowed img{
+    cursor: not-allowed!important;
+}
+.chatroom-list-contracted .list-contracted-item{
+    width: 66px;
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-contracted-item:hover{
+    background-color: #F9FAFA;
+}
+.active{
+    background-color: #CCECFF;
+}
+
+.chatroom-create{
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/** 展开后的样式 */ 
+.chatroom-list-extend{
+    width: 360px;
+    overflow-x: auto;
+}
+
+.chatroom-list-extend .list-contracted-item{
+    width: 100%;
+    height: 66px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.item-button-join{
+    position: absolute;
+    right: 12px;
+    bottom: 14px;
+    height: 24px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 4px 12px;
+    line-height: 16px;
+    cursor: default!important;
+}
+
+.item-user{
+    display: flex;
+    align-items: center;
+}
+
+.chatroom-create-extend{
+    height: 66px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+
+    overflow-y: auto;
+    /* height: calc(100% - 100px); */
+    overflow-x: hidden;
+}
+.create-user{
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+.create-button{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.roomlist-modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.theme-dark{
+    color: #fff;
+}
+
+.theme-dark .active{
+    background-color: #003F66;
+}
+
+.theme-dark .list-contracted-item:hover{
+    background-color: hsla(203, 100%,30%, 1);
+}

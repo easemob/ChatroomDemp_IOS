@@ -1,0 +1,67 @@
+
+
+.App {
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  /* height: calc(100vh - constant(safe-area-inset-bottom, 150px));
+  height: calc(100vh - env(safe-area-inset-bottom, 0.5vh)); */
+}
+
+
+.channel-list{
+  max-width: 360px;
+}
+
+.video-box{
+  flex: 1;
+}
+
+.chat-box{
+  width: 360px;
+  background-color: hsl(203deg, 8%, 98%);
+  /* border: 1px solid green; */
+}
+
+@media only screen and (max-width: 767px) {
+  .App{
+    position: absolute;
+    width: 100%;
+    /* height: calc(100vh - constant(safe-area-inset-bottom, 0.5vh)); */
+    height: calc(100% - env(safe-area-inset-bottom, 0rem));
+  }
+  .chat-box{
+    z-index: 99999;
+    width: 360px;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+  }
+}
+
+.uikit-header{
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.uikit-header>div{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+
+.theme-dark{
+  background-color: #171A1C;
+}
+
+.removed-modal{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
