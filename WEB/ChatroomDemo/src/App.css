@@ -20,6 +20,8 @@
 .chat-box{
   width: 360px;
   background-color: hsl(203deg, 8%, 98%);
+  overflow-y: auto;
+  height: 100vh;
   /* border: 1px solid green; */
 }
 
@@ -31,7 +33,7 @@
     height: calc(100% - env(safe-area-inset-bottom, 0rem));
   }
   .chat-box{
-    z-index: 99999;
+    /* z-index: 99999; */
     width: 360px;
     position: absolute;
     height: 100%;
@@ -45,6 +47,7 @@
   height: 60px;
   justify-content: space-between;
   align-items: center;
+  padding: 0 12px;
 }
 
 .uikit-header>div{

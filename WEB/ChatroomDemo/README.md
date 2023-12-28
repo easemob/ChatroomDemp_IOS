@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# 聊天室 Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+此 demo 演示了如何快速通过环信的`easemob-chat-uikit`搭建一个泛娱乐场景下的具有 IM 能力的场景 demo。
 
-## Available Scripts
+| 角色     | 描述                 |
+| -------- | -------------------- |
+| 房主     | 聊天室创建者         |
+| 普通用户 | 进入聊天室的其他用户 |
 
-In the project directory, you can run:
+聊天室 Demo 提供以下核心功能：
 
-### `npm start`
+- **房间管理**：创建、销毁房间，房间列表等。
+- **用户管理**：房主可以踢人出房间或者禁言其他成员
+- **消息管理**：撤回、举报、翻译等功能
+- **聊天管理**：发送/接收聊天信息等
+- **礼物管理**：发送/接收礼物消息等
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## [聊天室 Demo 中应用的服务端 Api](https://github.com/easemob/livestream-demo-app-server/tree/live-room)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 房间管理，包含房间的创建以及定时清理，常驻房间的处理。
+- 房间中全局广播的消息的发送
+- 房间中管理员通知消息的发送（例：房间 1min 后即将销毁的通知）
 
-### `npm test`
+## Demo 体验
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| iOS                                        | Android                                                                           | Web                                                           | Flutter                                                                            | RN                                                                    |
+| ------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| https://testflight.apple.com/join/kc0vtbgH | https://downloadsdk.easemob.com/downloads/chatroom/chatroomdemo_android-1.0.0.apk | https://livestream-hsb.oss-cn-beijing.aliyuncs.com/index.html | iOS https://testflight.apple.com/join/NzmtvJ6n Android http://www.pgyer.com/YZUCrW | iOS https://www.pgyer.com/ZaEbya Android https://www.pgyer.com/miATnL |
 
-### `npm run build`
+## 快速开始
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 前提条件
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. 将 demo 中 App.ts 文件里的 appKey 换成自己的 appKey。
+2. 参考“聊天室 Demo 中应用的服务端 Api”中的文档实现：生成 token、 创建聊天室、获取聊天室列表、销毁聊天室、自动向聊天室发送消息功能并部署后，替换 demo 中 apis/index.ts 中的 host 地址。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 运行项目
 
-### `npm run eject`
+1. 安装依赖
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. 启动项目
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 反馈
 
-## Learn More
+遇到问题可以提 issue
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## FAQ
+
+### 如何在环信官网创建应用
+
+> 环信应用创建：[https://docs-im-beta.easemob.com/product/enable_and_configure_IM.html](https://docs-im-beta.easemob.com/product/enable_and_configure_IM.html)

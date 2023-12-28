@@ -130,7 +130,9 @@
     align-items: center;
     gap: 4px;
 }
-
+.create-button:hover{
+    color: rgb(255, 255, 255);
+}
 
 .roomlist-modal-content{
     display: flex;
