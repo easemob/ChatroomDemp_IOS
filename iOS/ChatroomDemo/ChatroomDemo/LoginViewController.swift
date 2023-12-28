@@ -7,6 +7,7 @@
 
 import UIKit
 import ChatroomUIKit
+import SystemConfiguration
 
 final class LoginViewController: UIViewController {
 
@@ -24,7 +25,7 @@ final class LoginViewController: UIViewController {
         let background = UIImageView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         background.image = UIImage(named: "launch")
         self.view.addSubview(background)
-        if !chatToken.isEmpty {
+        if NetworkHelper.isNetworkAvailable() {
             self.fetchUserInfo()
         }
     }
@@ -102,30 +103,30 @@ fileprivate let appkeyInfos = ChatClient.shared().options.appkey.components(sepa
 }
 
 
-//class NetworkHelper {
-//
-//    class func isNetworkAvailable() -> Bool {
-//
-//        var zeroAddress = sockaddr_in()
-//        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-//        zeroAddress.sin_family = sa_family_t(AF_INET)
-//
-//        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-//            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-//                SCNetworkReachabilityCreateWithAddress(nil, $0)
-//            }
-//        }) else {
-//            return false
-//        }
-//
-//        var flags: SCNetworkReachabilityFlags = []
-//        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
-//            return false
-//        }
-//
-//        let isReachable = flags.contains(.reachable)
-//        let connectionRequired = flags.contains(.connectionRequired)
-//
-//        return isReachable && !connectionRequired
-//    }
-//}
+class NetworkHelper {
+
+    class func isNetworkAvailable() -> Bool {
+
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+
+        let isReachable = flags.contains(.reachable)
+        let connectionRequired = flags.contains(.connectionRequired)
+
+        return isReachable && !connectionRequired
+    }
+}
