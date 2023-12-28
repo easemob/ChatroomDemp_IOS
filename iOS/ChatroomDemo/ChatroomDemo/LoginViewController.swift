@@ -13,10 +13,17 @@ final class LoginViewController: UIViewController {
 
     @UserDefault("ChatroomDemoUserToken", defaultValue: "") var chatToken
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        let background = UIImageView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        background.image = UIImage(named: "launch")
+        self.view.addSubview(background)
         if !chatToken.isEmpty {
             self.fetchUserInfo()
         }

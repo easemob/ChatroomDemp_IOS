@@ -4,8 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,34 +27,11 @@
         <scene sceneID="PcQ-Xi-rbW">
             <objects>
                 <viewController id="EXn-jr-PBP" customClass="LoginViewController" customModule="ChatroomDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6g4-dZ-m3R">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="3Pa-rE-yCI">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="LhI-KP-Lt1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="3Pa-rE-yCI" firstAttribute="trailing" secondItem="LhI-KP-Lt1" secondAttribute="trailing" id="8Lp-KN-TsK"/>
-                            <constraint firstItem="3Pa-rE-yCI" firstAttribute="leading" secondItem="6g4-dZ-m3R" secondAttribute="leading" id="9JI-uW-oQ5"/>
-                            <constraint firstItem="3Pa-rE-yCI" firstAttribute="top" secondItem="6g4-dZ-m3R" secondAttribute="top" id="Gl2-l4-oFY"/>
-                            <constraint firstAttribute="bottom" secondItem="3Pa-rE-yCI" secondAttribute="bottom" id="mBe-3U-Bis"/>
-                        </constraints>
-                    </view>
                     <navigationItem key="navigationItem" id="KrR-xJ-Vxp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewL-9A-aXi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809.9236641221373" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1474" y="-37"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="launch" width="390" height="844"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
