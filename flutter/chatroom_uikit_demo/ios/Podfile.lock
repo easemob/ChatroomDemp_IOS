@@ -1,0 +1,54 @@
+PODS:
+  - chatroom_uikit (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_localization (0.0.1):
+    - Flutter
+  - HyphenateChat (4.2.0)
+  - im_flutter_sdk (0.0.1):
+    - Flutter
+    - HyphenateChat (= 4.2.0)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - video_player_avfoundation (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - chatroom_uikit (from `.symlinks/plugins/chatroom_uikit/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
+  - im_flutter_sdk (from `.symlinks/plugins/im_flutter_sdk/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
+
+SPEC REPOS:
+  trunk:
+    - HyphenateChat
+
+EXTERNAL SOURCES:
+  chatroom_uikit:
+    :path: ".symlinks/plugins/chatroom_uikit/ios"
+  Flutter:
+    :path: Flutter
+  flutter_localization:
+    :path: ".symlinks/plugins/flutter_localization/ios"
+  im_flutter_sdk:
+    :path: ".symlinks/plugins/im_flutter_sdk/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  video_player_avfoundation:
+    :path: ".symlinks/plugins/video_player_avfoundation/ios"
+
+SPEC CHECKSUMS:
+  chatroom_uikit: 7770dee556851a0e727fbe184b750d8ef0ed5123
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
+  HyphenateChat: e43d1ec9ccf404eeb2ee7d3265cd12a4e83f0d3a
+  im_flutter_sdk: 0012f5bb4bf59284f6b5e55059f96e60eb527328
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
+
+PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+
+COCOAPODS: 1.11.3
