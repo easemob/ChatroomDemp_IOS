@@ -4001,6 +4001,11 @@ easemob-chat-uikit@^1.0.0:
   resolved "https://registry.yarnpkg.com/easemob-chat-uikit/-/easemob-chat-uikit-1.0.0.tgz#f38af7685ae0b14668996e302b64d88462236aa3"
   integrity sha512-NMX8jYZC9CLGg2UcaDH1Msg7BkNeyY3yBolw9OVBbfJk5SHjwgS/MwPTC8mWJdvO92agFUTd7ql0RJXQOzczJg==
 
+easemob-websdk@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/easemob-websdk/-/easemob-websdk-4.4.1.tgz#e90bf988f23673fa83d12eea510a0a17501b6d3b"
+  integrity sha512-sPWQBiulZ4xrP/Ui7r6PUqUE1NiSvrpTeL4lwIfXPRUMmpIriziIt+vsdkRJf4FO4t4s0z/W2tEILnsUcu8lcQ==
+
 eastasianwidth@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"

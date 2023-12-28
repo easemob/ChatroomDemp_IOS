@@ -34,8 +34,8 @@ import { getToken } from "./apis";
 // import { addEventHandler } from "./eventListener";
 import { ChatroomProvider, ContextProps } from "./context";
 import toast, { Toaster } from "react-hot-toast";
-import { AgoraChat } from "agora-chat";
-
+import { EasemobChat } from "easemob-websdk";
+const appKey = "";
 function App() {
   const context = useContext(RootContext);
   const [token, setToken] = useState("");
@@ -126,7 +126,7 @@ function App() {
 
     client &&
       client.addEventHandler("chatroom", {
-        onChatroomEvent: (event: AgoraChat.EventData) => {
+        onChatroomEvent: (event: EasemobChat.EventData) => {
           if (
             event.operation === "removeMember" ||
             event.operation === "destroy"
@@ -204,7 +204,7 @@ function App() {
   return (
     <UIKitProvider
       initConfig={{
-        appKey: "easemob#chatroom-uikit",
+        appKey: appKey,
       }}
       local={{
         lng: "zh",
