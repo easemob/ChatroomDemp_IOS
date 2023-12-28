@@ -17,7 +17,7 @@ final class BottomBar: UIView {
     }()
     
     lazy var userName: UILabel = {
-        UILabel(frame: CGRect(x: self.avatar.frame.maxX+12, y: 15, width: self.frame.width-self.avatar.frame.maxX-12-128, height: 40)).font(UIFont.theme.labelLarge).textColor(UIColor.theme.neutralColor1).numberOfLines(2).text(YourAppUser.current.nickName)
+        UILabel(frame: CGRect(x: self.avatar.frame.maxX+12, y: 15, width: self.frame.width-self.avatar.frame.maxX-12-128, height: 40)).font(UIFont.theme.labelLarge).textColor(UIColor.theme.neutralColor1).numberOfLines(2).text(YourAppUser.current.nickname)
     }()
     
     lazy var create: UIButton = {

@@ -34,7 +34,7 @@ final class RoomViewController: UIViewController {
     }()
     
     lazy var roomView: ChatroomView = {
-        ChatroomUIKitClient.shared.launchRoomViewWithOptions(roomId: self.room.id ?? "", frame: CGRect(x: 0, y: ScreenHeight-336-BottomBarHeight, width: self.view.frame.width, height: 336+BottomBarHeight), ownerId: self.room.owner ?? "",options: self.option_UI)
+        ChatroomUIKitClient.shared.launchRoomView(roomId: self.room.id ?? "", frame: CGRect(x: 0, y: ScreenHeight-336-BottomBarHeight, width: self.view.frame.width, height: 336+BottomBarHeight), ownerId: self.room.owner ?? "",options: self.option_UI)
     }()
         
     lazy var gift1: GiftsViewController = {
@@ -61,8 +61,8 @@ final class RoomViewController: UIViewController {
         if let roomName = self.room.name,let userName = self.room.nickname,let avatar = self.room.iconKey {
             self.header.update(roomName: roomName, userName: userName, avatar: avatar)
         }
-        self.roomView.addActionHandler(actionHandler: self)
-        ChatroomUIKitClient.shared.registerRoomEventsListener(listener: self)
+        self.roomView.addActionHandler(self)
+        ChatroomUIKitClient.shared.registerRoomEventsListener(self)
         self.playView.player = self.player
         self.player.play()
         self.header.backClosure = { [weak self] in
@@ -74,7 +74,7 @@ final class RoomViewController: UIViewController {
     }
     
     deinit {
-        ChatroomUIKitClient.shared.unregisterRoomEventsListener(listener: self)
+        ChatroomUIKitClient.shared.unregisterRoomEventsListener(self)
     }
     
     private func leaveRoom() {
@@ -135,12 +135,11 @@ final class RoomViewController: UIViewController {
                     }
                 })
             case "Remove":
-                DialogManager.shared.showAlert(content: "Remove `\(user.nickName.isEmpty ? user.userId:user.nickName)`.Are you sure?", showCancel: true, showConfirm: true) {
+                DialogManager.shared.showAlert(content: "确定要移除成员 `\(user.nickname.isEmpty ? user.userId:user.nickname)`?", showCancel: true, showConfirm: true) {
                     ChatroomUIKitClient.shared.roomService?.kick(userId: user.userId) { [weak self] error in
                         guard let `self` = self else { return }
                         if error == nil {
-//                            self.removeUser(user: user)
-                            self.showToast(toast: error == nil ? "Remove successful!":"\(error?.errorDescription ?? "")",duration: 2)
+                            self.showToast(toast: error == nil ? "删除成功":"\(error?.errorDescription ?? "")",duration: 2)
                         } else {
                             self.showToast(toast: "\(error?.errorDescription ?? "")", duration: 3)
                         }
@@ -264,15 +263,17 @@ extension RoomViewController: RoomEventsListener {
     }
     
     func onUserLoginOtherDevice(device: String) {
-        self.showToast(toast: "User login on other device", duration: 3)
+        self.showToast(toast: "当前用户已在其它设备登录", duration: 3)
     }
     
     func onUserUnmuted(roomId: String, userId: String) {
-        self.showToast(toast: "\(ChatroomContext.shared?.usersMap?[userId]?.nickName ?? userId) was unmuted.", duration: 3)
+        self.showToast(toast: "您已被解除禁言.", duration: 3)
     }
     
     func onUserMuted(roomId: String, userId: String) {
-        self.showToast(toast: "\(ChatroomContext.shared?.usersMap?[userId]?.nickName ?? userId) was muted.", duration: 3)
+        if userId == ChatroomContext.shared?.currentUser?.userId ?? "" {
+            self.showToast(toast: "您已被禁言", duration: 3)
+        }
     }
     
     func onUserJoined(roomId: String, user: ChatroomUIKit.UserInfoProtocol) {
@@ -280,7 +281,7 @@ extension RoomViewController: RoomEventsListener {
     }
     
     func onUserBeKicked(roomId: String, reason: ChatroomUIKit.ChatroomBeKickedReason) {
-        self.showToast(toast: "当前用户已被踢.", duration: 2)
+        self.showToast(toast: "你已被请出聊天室.", duration: 2)
         self.perform(#selector(exitRoom), with: nil, afterDelay: 1)
     }
     
@@ -290,7 +291,7 @@ extension RoomViewController: RoomEventsListener {
     
     func onAnnouncementUpdate(roomId: String, announcement: String) {
         //toast or alert notify participants.
-        self.showToast(toast: "The chat room announcement is updated to \(announcement)", duration: 5)
+        self.showToast(toast: "群公告已更新： \(announcement)", duration: 5)
     }
     
     func onEventResultChanged(error: ChatroomUIKit.ChatError?, type: ChatroomUIKit.RoomEventsType) {
@@ -301,12 +302,31 @@ extension RoomViewController: RoomEventsListener {
                 self.exitRoom()
             case .report:
                 //You can show alert.
-                self.showToast(toast: "举报成功!")
+                self.showToast(toast: "举报已提交",duration: 2)
+            case .unmute:
+                self.showToast(toast: "您已被解除禁言",duration: 2)
+            case .mute:
+                self.showToast(toast: "您已被禁言",duration: 2)
+            case .kick:
+                self.showToast(toast: "踢出成功",duration: 2)
             default:
                 break
             }
         } else {
-            self.showToast(toast: "RoomEvents type \(type): \(error?.errorDescription ?? "")", duration: 3)
+            switch type {
+            case .sendMessage:
+                if error?.code == .userMuted {
+                    self.showToast(toast: "You have been muted and are unable to send messages.".chatroom.localize, duration: 2,delay: 1)
+                }
+            case .recall:
+                if error?.code == .messageRecallTimeLimit {
+                    self.showToast(toast: "此消息已经超过撤回时限，无法撤回")
+                }
+            default:
+                self.showToast(toast: "RoomEvents \(type) error: \(error?.errorDescription ?? "")", duration: 3)
+                break
+            }
+            
         }
     }
     

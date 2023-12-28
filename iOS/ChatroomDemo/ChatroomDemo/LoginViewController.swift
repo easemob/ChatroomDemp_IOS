@@ -16,19 +16,27 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if !chatToken.isEmpty {
+            self.fetchUserInfo()
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         self.fetchUserInfo()
     }
     
-    func fetchUserInfo() {
+    @objc func fetchUserInfo() {
         YourAppUser.current.userId = YourAppUser.current.userId
         YourAppUser.current.avatarURL = YourAppUser.current.avatarURL
-        YourAppUser.current.nickName = YourAppUser.current.nickName
-        ChatroomBusinessRequest.shared.sendPOSTRequest(api: .login(()), params: ["username":YourAppUser.current.userId,"nickname":YourAppUser.current.nickName,"icon_key":YourAppUser.current.avatarURL]) { [weak self] result, error in
+        YourAppUser.current.nickname = YourAppUser.current.nickname
+        ChatroomBusinessRequest.shared.sendPOSTRequest(api: .login(()), params: ["username":YourAppUser.current.userId,"nickname":YourAppUser.current.nickname,"icon_key":YourAppUser.current.avatarURL]) { [weak self] result, error in
             if error == nil,let access_token = result?["access_token"] as? String,let userName = result?["userName"] as? String {
                 self?.chatToken = access_token
-                if userName == "easemob" {
-                    YourAppUser.current.avatarURL = ChatroomRequest.shared.host+"/\(appkeyInfos.first ?? "")/\(appkeyInfos.last ?? "")/chatfiles/"+"fc14ab00-79f7-11ee-93f4-618a64affe88"
-                }
+//                if userName == "easemob" {
+//                    YourAppUser.current.avatarURL = ChatroomRequest.shared.host+"/\(appkeyInfos.first ?? "")/\(appkeyInfos.last ?? "")/chatfiles/"+"fc14ab00-79f7-11ee-93f4-618a64affe88"
+//                }
                 self?.login(user: YourAppUser.current, token: access_token)
             } else {
                 DialogManager.shared.showAlert(content: "获取登录信息失败，点击确定重新获取", showCancel: false, showConfirm: true) {
@@ -52,6 +60,8 @@ final class LoginViewController: UIViewController {
         }
         
     }
+    
+
 
 }
 
@@ -63,10 +73,10 @@ fileprivate let appkeyInfos = ChatClient.shared().options.appkey.components(sepa
     static let current = YourAppUser()
     
     public func toJsonObject() -> Dictionary<String, Any>? {
-        ["userId":self.userId,"nickName":self.nickName,"avatarURL":self.avatarURL,"identity":self.identity,"gender":self.gender]
+        ["userId":self.userId,"nickname":self.nickname,"avatarURL":self.avatarURL,"identity":self.identity,"gender":self.gender]
     }
     
-    @UserDefault("ChatroomUserName", defaultValue: userNames.randomElement() ?? "") public var nickName
+    @UserDefault("ChatroomUserName", defaultValue: userNames.randomElement() ?? "") public var nickname
     
     @UserDefault("ChatroomUserAvatar", defaultValue: ChatroomRequest.shared.host+"/\(appkeyInfos.first ?? "")/\(appkeyInfos.last ?? "")/chatfiles/"+"\(avatars.randomElement() ?? "")") public var avatarURL
     
@@ -83,3 +93,32 @@ fileprivate let appkeyInfos = ChatClient.shared().options.appkey.components(sepa
     
     
 }
+
+
+//class NetworkHelper {
+//
+//    class func isNetworkAvailable() -> Bool {
+//
+//        var zeroAddress = sockaddr_in()
+//        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+//        zeroAddress.sin_family = sa_family_t(AF_INET)
+//
+//        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+//            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+//                SCNetworkReachabilityCreateWithAddress(nil, $0)
+//            }
+//        }) else {
+//            return false
+//        }
+//
+//        var flags: SCNetworkReachabilityFlags = []
+//        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+//            return false
+//        }
+//
+//        let isReachable = flags.contains(.reachable)
+//        let connectionRequired = flags.contains(.connectionRequired)
+//
+//        return isReachable && !connectionRequired
+//    }
+//}

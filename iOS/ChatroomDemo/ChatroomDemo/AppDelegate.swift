@@ -17,10 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let option = ChatroomUIKitInitialOptions.ChatOptions()
         option.enableConsoleLog = true
-        let error = ChatroomUIKitClient.shared.setup(with: <#您的环信AppKey#>, option: option)
+        let error = ChatroomUIKitClient.shared.setup(appKey: <#您的环信Appkey#>, option: option)
         if error != nil {
             consoleLogInfo("ChatroomUIKitClient init error:\(error?.errorDescription ?? "")", type: .debug)
         }
+        if let lang = NSLocale.preferredLanguages.first,lang.contains("zh") {
+            Appearance.messageTranslationLanguage = .Chinese
+        } else {
+            Appearance.messageTranslationLanguage = .English
+        }
+        Theme.registerSwitchThemeViews(view: self)
+        self.switchTheme(style: Theme.style)
         return true
     }
 
@@ -40,4 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension AppDelegate: ThemeSwitchProtocol {
+    func switchTheme(style: ThemeStyle) {
+        UIApplication.shared.windows.forEach { $0.overrideUserInterfaceStyle = (style == .dark ? .dark:.light) }
+//        self.window?.tintColor =  ? UIColor.theme.neutralColor1:UIColor.theme.neutralColor98
+    }
+}
+
 

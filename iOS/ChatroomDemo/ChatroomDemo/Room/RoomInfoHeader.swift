@@ -45,7 +45,7 @@ final class RoomHeader: UIView {
     }()
     
     lazy var info: RoomInfoHeader = {
-        RoomInfoHeader(frame: CGRect(x: self.back.frame.maxX+4, y: 3, width: (self.frame.width*0.52), height: self.frame.height-6)).backgroundColor(UIColor.theme.barrageLightColor2).cornerRadius(.large)
+        RoomInfoHeader(frame: CGRect(x: self.back.frame.maxX+4, y: 3, width: (self.frame.width*0.4), height: self.frame.height-6)).backgroundColor(UIColor.theme.barrageLightColor2).cornerRadius(.large)
     }()
     
     lazy var members: UIButton = {
@@ -75,6 +75,13 @@ final class RoomHeader: UIView {
         self.info.avatar.image(with: avatar, placeHolder: Appearance.avatarPlaceHolder)
         self.info.roomName.text = roomName
         self.info.userName.text = userName
+        let size = roomName.chatroom.sizeWithText(font: UIFont.systemFont(ofSize: 16, weight: .medium), size: CGSize(width: ScreenWidth-120, height: 18))
+        let width = size.width+(self.info.frame.height-4)+32
+        self.info.frame = CGRect(x: self.info.frame.minX, y: self.info.frame.minY, width: width, height: self.info.frame.height)
+        self.info.roomName.frame = CGRect(x: self.info.avatar.frame.maxX+8, y: 2, width: self.info.frame.width-self.info.avatar.frame.maxX-8-16, height: 22)
+    }
+    
+    deinit {
     }
 }
 

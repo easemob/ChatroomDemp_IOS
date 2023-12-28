@@ -62,6 +62,7 @@ final class RoomListViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.view.backgroundColor = UIColor.theme.neutralColor98
+        
         // Do any additional setup after loading the view.
         self.view.addSubViews([self.headTitle,self.refresh,self.modeSegment,self.channelList,self.bottomBar])
         self.modeSegment.selectedIndex = { [weak self] in
@@ -92,7 +93,7 @@ final class RoomListViewController: UIViewController {
     }
     
     private func createRoom() {
-        ChatroomBusinessRequest.shared.sendPOSTRequest(api: .room(()), params: ["name":"\(YourAppUser.current.nickName)的直播间","owner":YourAppUser.current.userId], classType: RoomEntity.self) { [weak self] room, error in
+        ChatroomBusinessRequest.shared.sendPOSTRequest(api: .room(()), params: ["name":"\(YourAppUser.current.nickname)的直播间","owner":YourAppUser.current.userId], classType: RoomEntity.self) { [weak self] room, error in
             if error == nil,let room = room {
                 self?.enterRoom(room: room)
             } else {
