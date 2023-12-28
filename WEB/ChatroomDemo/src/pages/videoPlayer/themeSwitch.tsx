@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Icon } from "chatuim2";
+import { Icon } from "easemob-chat-uikit";
 import { ChatroomContext } from "../../context";
 interface ThemeSwitchProps {
   onChange?: (type: "sun" | "moon") => void;
@@ -25,24 +25,32 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
         context.theme == "moon" ? "theme-dark" : ""
       }`}
     >
-      <Icon
-        type="SUN"
-        width={24}
-        height={24}
-        onClick={() => {
-          handleClick("sun");
-        }}
-        style={activeType == "sun" ? style : { width: "24px", height: "24px" }}
-      ></Icon>
-      <Icon
-        type="MOON"
-        width={24}
-        height={24}
-        onClick={() => {
-          handleClick("moon");
-        }}
-        style={activeType == "moon" ? style : { width: "24px", height: "24px" }}
-      ></Icon>
+      <div title="亮色主题" style={{ display: "flex" }}>
+        <Icon
+          type="SUN"
+          width={24}
+          height={24}
+          onClick={() => {
+            handleClick("sun");
+          }}
+          style={
+            activeType == "sun" ? style : { width: "24px", height: "24px" }
+          }
+        ></Icon>
+      </div>
+      <div title="暗色主题" style={{ display: "flex" }}>
+        <Icon
+          type="MOON"
+          width={24}
+          height={24}
+          onClick={() => {
+            handleClick("moon");
+          }}
+          style={
+            activeType == "moon" ? style : { width: "24px", height: "24px" }
+          }
+        ></Icon>
+      </div>
     </div>
   );
 };

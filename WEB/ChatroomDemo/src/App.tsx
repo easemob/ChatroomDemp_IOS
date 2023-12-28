@@ -20,8 +20,8 @@ import {
   RootContext,
   Provider as UIKitProvider,
   eventHandler,
-} from "chatuim2";
-import "chatuim2/style.css";
+} from "easemob-chat-uikit";
+import "easemob-chat-uikit/style.css";
 import ChatroomList, { ChatroomInfo } from "./pages/chatroomList";
 import VideoPlayer from "./pages/videoPlayer";
 import {
@@ -95,7 +95,7 @@ function App() {
       },
       reportMessage: {
         success: () => {
-          toast.success("举报成功");
+          toast.success("举报已提交");
         },
         error: (error) => {
           toast.error("举报失败");
@@ -106,6 +106,11 @@ function App() {
           if (error.type == 507) {
             toast.error("你已被禁言，无法发送消息");
           }
+        },
+      },
+      removeChatRoomMember: {
+        success: () => {
+          toast.success("已将该用户踢出聊天室");
         },
       },
     });
@@ -247,27 +252,39 @@ function App() {
               renderHeader={() => (
                 <div className="uikit-header">
                   <div>
-                    <Icon
-                      onClick={() => {
-                        setChatPanelVisible(false);
-                      }}
-                      type="VERTICAL_ARROW"
-                      style={{
-                        transform: "rotate(180deg)",
-                        fill: theme == "moon" ? "#E3E6E8" : "#464E53",
-                      }}
-                      width={24}
-                      height={24}
-                    ></Icon>
+                    <div
+                      title="收起"
+                      style={{ display: "flex", cursor: "pointer" }}
+                    >
+                      <Icon
+                        onClick={() => {
+                          setChatPanelVisible(false);
+                        }}
+                        type="VERTICAL_ARROW"
+                        style={{
+                          transform: "rotate(180deg)",
+                          fill: theme == "moon" ? "#E3E6E8" : "#464E53",
+                        }}
+                        width={24}
+                        height={24}
+                      ></Icon>
+                    </div>
                     聊天室
                   </div>
-                  <Icon
-                    color={theme == "moon" ? "#E3E6E8" : "#464E53"}
-                    type="PERSON_DOUBLE_FILL"
-                    onClick={() => {
-                      setMemberPanelVisible(true);
-                    }}
-                  ></Icon>
+                  <div
+                    title="聊天室成员"
+                    style={{ display: "flex", cursor: "pointer" }}
+                  >
+                    <Icon
+                      color={theme == "moon" ? "#E3E6E8" : "#464E53"}
+                      width={24}
+                      height={24}
+                      type="PERSON_DOUBLE_FILL"
+                      onClick={() => {
+                        setMemberPanelVisible(true);
+                      }}
+                    ></Icon>
+                  </div>
                 </div>
               )}
             />
