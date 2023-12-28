@@ -1,20 +1,17 @@
 import axios from "axios";
-
+const host = "";
 export const getToken = (userId: string, nickname: string, avatar: string) => {
-  return axios.post(
-    "https://a1.easemob.com/internal/appserver/liverooms/user/login",
-    {
-      username: userId,
-      icon_key: avatar,
-      nickname,
-    }
-  );
+  return axios.post(`${host}/liverooms/user/login`, {
+    username: userId,
+    icon_key: avatar,
+    nickname,
+  });
 };
 
 export const createChatroom = (chatroomName: string, ownerId: string) => {
   const token = sessionStorage.getItem("chatroom-token");
   return axios.post(
-    "https://a1.easemob.com/internal/appserver/liverooms ",
+    `${host}/liverooms`,
     {
       name: chatroomName,
       owner: ownerId,
@@ -29,7 +26,7 @@ export const createChatroom = (chatroomName: string, ownerId: string) => {
 
 export const getChatroomList = () => {
   const token = sessionStorage.getItem("chatroom-token");
-  return axios.get("https://a1.easemob.com/internal/appserver/liverooms", {
+  return axios.get(`${host}/liverooms`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -38,12 +35,9 @@ export const getChatroomList = () => {
 
 export const deleteChatroom = (roomId: string) => {
   const token = sessionStorage.getItem("chatroom-token");
-  return axios.delete(
-    `https://a1.easemob.com/internal/appserver/liverooms/${roomId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return axios.delete(`${host}/liverooms/${roomId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };

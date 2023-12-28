@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useContext } from "react";
-import { Collapse, Header, Icon } from "chatuim2";
+import { Avatar, Collapse, Header, Icon } from "easemob-chat-uikit";
 import "./index.css";
 import video from "../../video/xuanchuan2.mp4";
 import { ChatroomContext } from "../../context";
@@ -17,7 +17,7 @@ const VideoPlayer = (props: VideoPlayerProps) => {
     if (!context.chatroomId) {
       return;
     }
-    videoRef?.current?.click();
+    // videoRef?.current?.click();
     setTimeout(() => {
       videoRef.current && (videoRef.current.currentTime = 0);
       videoRef?.current?.play();
@@ -26,20 +26,32 @@ const VideoPlayer = (props: VideoPlayerProps) => {
   return (
     <div>
       <Header
-        content={context.chatroomInfo?.name}
+        content={context.chatroomInfo?.name || ""}
         subtitle={context.chatroomInfo?.nickname}
-        avatarSrc={context.chatroomInfo?.iconKey}
+        // avatarSrc={context.chatroomInfo?.iconKey}
+        avatar={
+          context.chatroomInfo?.iconKey ? (
+            <Avatar
+              src={context.chatroomInfo?.iconKey}
+              style={{ marginRight: 12 }}
+            ></Avatar>
+          ) : (
+            <></>
+          )
+        }
         suffixIcon={
           <div className="header-icon-box">
             <ThemeSwitch onChange={onThemeChange}></ThemeSwitch>
             {!context.chatPanelVisible && (
-              <Icon
-                type="BUBBLE_FILL"
-                color={context.theme == "moon" ? "#E3E6E8" : "#464E53"}
-                onClick={onChatClick}
-                width={24}
-                height={24}
-              ></Icon>
+              <div title="聊天" style={{ display: "flex", cursor: "pointer" }}>
+                <Icon
+                  type="BUBBLE_FILL"
+                  color={context.theme == "moon" ? "#E3E6E8" : "#464E53"}
+                  onClick={onChatClick}
+                  width={24}
+                  height={24}
+                ></Icon>
+              </div>
             )}
           </div>
         }

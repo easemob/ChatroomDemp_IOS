@@ -24,7 +24,9 @@
     padding: 2px;
     box-sizing: border-box;
     gap: 2px;
+    cursor: pointer;
 }
 .theme-dark .themeSwitch-box{
     background-color: #464e5382;
 }
+
