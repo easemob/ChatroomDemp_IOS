@@ -27,7 +27,7 @@
 ## Demo 体验
 | iOS                                                          | Android                                                      | Web | Flutter                                                                            | RN                                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |-----|------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| https://testflight.apple.com/join/kc0vtbgH | https://downloadsdk.easemob.com/downloads/chatroom/chatroomdemo_android-1.0.0.apk  | https://livestream-hsb.oss-cn-beijing.aliyuncs.com/index.html | iOS https://testflight.apple.com/join/NzmtvJ6n Android http://www.pgyer.com/YZUCrW | iOS https://www.pgyer.com/ZaEbya Android https://www.pgyer.com/miATnL |
+| https://testflight.apple.com/join/kc0vtbgH | https://downloadsdk.easemob.com/downloads/chatroom/chatroomdemo_android-1.0.0.apk  | https://livestream-hsb.oss-cn-beijing.aliyuncs.com/index.html | iOS https://testflight.apple.com/join/NzmtvJ6n Android http://www.pgyer.com/YZUCrW | iOS https://testflight.apple.com/join/773FJVTt Android https://www.pgyer.com/miATnL |
 
 ## 快速开始
 
