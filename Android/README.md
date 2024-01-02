@@ -204,12 +204,3 @@ fun ChatroomUIKitTheme(
     content: @Composable () -> Unit
 )
 ```
-
-# 业务流程
-![Overall flow diagram of business logic](./image/BusinessFlowchartA.png)
-
-# API 时序图
-![APIUML](./image/Api.png)
-
-# 设计指南
-关于[设计指南](https://www.figma.com/file/OX2dUdilAKHahAh9VwX8aI/Streamuikit?node-id=137)和细节的任何问题，您可以在Figma设计草案中添加评论，并提及我们的设计师Stevie Jiang。
