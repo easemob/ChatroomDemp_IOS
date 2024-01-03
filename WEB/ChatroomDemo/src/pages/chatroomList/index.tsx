@@ -1,6 +1,6 @@
 // chatroomList 组件
 import React, { useEffect, useContext, useState } from "react";
-import { Collapse, Header, Avatar, Button, Icon, Modal } from "chatuim2";
+import { Collapse, Header, Avatar, Button, Icon, Modal } from "easemob-chat-uikit";
 import "./index.css";
 import {
   getChatroomList,
@@ -34,7 +34,7 @@ const ChatroomList = (props: ChatroomListProps) => {
   const context = useContext(ChatroomContext);
   const [chatroomList, setChatroomList] = useState<ChatroomInfo[]>([]);
   const [extend, setExtend] = useState(false);
-  const [activeKey, setActiveKey] = useState(0);
+  const [activeKey, setActiveKey] = useState(-1);
   const [isLiving, setIsLiving] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [livingRoomId, setLivingRoomId] = useState("");
@@ -45,8 +45,8 @@ const ChatroomList = (props: ChatroomListProps) => {
         setChatroomList(roomList);
 
         if (!leaveChatroom) {
-          onJoinChatroom(roomList[0]);
-          setActiveKey(0);
+          // onJoinChatroom(roomList[0]);
+          // setActiveKey(0);
         }
       });
     }
@@ -237,7 +237,12 @@ const ChatroomList = (props: ChatroomListProps) => {
             </Button>
           ) : (
             <Button shape="circle" type="primary" onClick={createChatroom}>
-              <Icon color="#fff" type="VIDEO_CAMERA_PLUS"></Icon>
+              <div
+                title="创建"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <Icon color="#fff" type="VIDEO_CAMERA_PLUS"></Icon>
+              </div>
             </Button>
           )}
         </div>
@@ -271,14 +276,18 @@ const ChatroomList = (props: ChatroomListProps) => {
           }`}
         >
           直播间列表{" "}
-          <Icon
-            type="SPINNER"
-            onClick={refreshRoomList}
-            style={{
-              cursor: "pointer",
-              fill: context.theme == "moon" ? "#E3E6E8" : "#464E53",
-            }}
-          ></Icon>
+          <div title="刷新" style={{ display: "flex" }}>
+            <Icon
+              type="ROUND_ARROW_THICK"
+              onClick={refreshRoomList}
+              width={20}
+              height={20}
+              style={{
+                cursor: "pointer",
+                fill: context.theme == "moon" ? "#E3E6E8" : "#464E53",
+              }}
+            ></Icon>
+          </div>
         </div>
       ) : null}
       <Collapse
