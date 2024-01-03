@@ -72,6 +72,7 @@ final class RoomListViewController: UIViewController {
             self?.createRoom()
         }
         Theme.registerSwitchThemeViews(view: self)
+        self.switchTheme(style: Theme.style)
         ChatroomUIKit.Appearance.messageDisplayStyle = .hideUserIdentity
     }
     
@@ -162,6 +163,8 @@ extension RoomListViewController: UITableViewDelegate,UITableViewDataSource {
 extension RoomListViewController: ThemeSwitchProtocol {
     
     func switchTheme(style: ChatroomUIKit.ThemeStyle) {
+        self.modeSegment.leftItem.isSelected = style == .light
+        self.modeSegment.rightItem.isSelected = style == .dark
         self.modeSegment.backgroundColor(style == .dark ? UIColor.theme.neutralColor2:UIColor.theme.neutralColor9)
         self.view.backgroundColor(style == .dark ? UIColor.theme.neutralColor1:UIColor.theme.neutralColor98)
         self.refresh.setImage(UIImage(named: "refresh")?.withTintColor(style == .light ? UIColor.theme.neutralColor3:UIColor.theme.neutralColor95), for: .normal)

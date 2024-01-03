@@ -18,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        let style = self.window?.traitCollection.userInterfaceStyle ??  .light
+        Theme.registerSwitchThemeViews(view: self)
+        Theme.switchTheme(style: style == .light ? .light:.dark)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,3 +55,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 
+extension SceneDelegate: ThemeSwitchProtocol {
+    func switchTheme(style: ThemeStyle) {
+        UIApplication.shared.windows.forEach { $0.overrideUserInterfaceStyle = (style == .dark ? .dark:.light) }
+//        self.window?.tintColor =  ? UIColor.theme.neutralColor1:UIColor.theme.neutralColor98
+    }
+}
