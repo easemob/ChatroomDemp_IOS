@@ -19,7 +19,6 @@ void main() async {
     debugMode: true,
   );
   UserTool.instance.init();
-
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => runApp(const MyApp()));
 }
@@ -47,8 +46,9 @@ class _MyAppState extends State<MyApp> {
       MapLocale('zh', zh),
       MapLocale('en', en),
     ], initLanguageCode: 'zh');
-    ChatRoomSettings.defaultGiftIcon = 'assets/images/sweet_heart.png';
 
+    ChatRoomSettings.defaultGiftIcon = 'assets/images/sweet_heart.png';
+    ChatRoomSettings.defaultGiftPriceIcon = 'assets/images/dollar.png';
     ChatRoomSettings.enableMsgListGift = true;
     ChatRoomSettings.enableMsgListIdentify = false;
     ChatRoomSettings.enableParticipantItemIdentify = false;
@@ -95,7 +95,11 @@ class _MyAppState extends State<MyApp> {
             if (settings.name == 'room_list_view') {
               return const RoomListView();
             } else if (settings.name == 'room_view') {
-              return RoomView(settings.arguments as Room);
+              Locale locale = Localizations.localeOf(context);
+              return RoomView(
+                settings.arguments as Room,
+                languageCode: locale.languageCode.toLanguageCode(),
+              );
             }
             return Container();
           },
@@ -199,20 +203,29 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            color: Colors.white,
-            child: const Center(
-              child: Text(
-                "环信聊天室",
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 159, 255, 1),
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 10,
+          Positioned.fill(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/images/welcome_icon.png',
+                  width: 120,
+                  height: 120,
                 ),
-              ),
+                const Text(
+                  "环信聊天室",
+                  style: TextStyle(
+                    color: Color.fromRGBO(0, 159, 255, 1),
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 10,
+                  ),
+                ),
+              ],
             ),
           ),
           Positioned(
