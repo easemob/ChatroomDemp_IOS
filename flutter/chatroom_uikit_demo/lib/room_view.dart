@@ -11,8 +11,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:video_player/video_player.dart';
 
 class RoomView extends StatefulWidget {
-  const RoomView(this.room, {super.key});
+  const RoomView(this.room, {this.languageCode, super.key});
   final Room room;
+  final LanguageCode? languageCode;
 
   @override
   State<RoomView> createState() => _RoomViewState();
@@ -24,13 +25,13 @@ class _RoomViewState extends State<RoomView>
 
   late final ChatroomController controller;
   late VideoPlayerController _videoPlayerController;
+  DefaultReportController? reportController;
   @override
   void initState() {
     super.initState();
 
     ChatroomUIKitClient.instance.roomService.bindResponse(this);
     ChatroomUIKitClient.instance.bindRoomEventResponse(this);
-
     _videoPlayerController =
         VideoPlayerController.asset('assets/videos/video1.mp4');
 
@@ -39,7 +40,11 @@ class _RoomViewState extends State<RoomView>
       ownerId: widget.room.ownerId,
       giftControllers: () async {
         List<DefaultGiftPageController> service = [];
-        final value = await rootBundle.loadString('assets/data/Gifts_cn.json');
+
+        String loadString = widget.languageCode == LanguageCode.zh
+            ? 'assets/data/Gifts_cn.json'
+            : 'assets/data/Gifts_en.json';
+        final value = await rootBundle.loadString(loadString);
         Map<String, dynamic> map = json.decode(value);
         for (var element in map.keys.toList()) {
           service.add(
@@ -156,8 +161,8 @@ class _RoomViewState extends State<RoomView>
                 padding: const EdgeInsets.fromLTRB(2, 2, 16, 2),
                 decoration: BoxDecoration(
                   color: isDark
-                      ? const Color.fromRGBO(255, 255, 255, 0.1)
-                      : const Color.fromRGBO(0, 0, 0, 0.2),
+                      ? const Color.fromRGBO(0, 0, 0, 0.2)
+                      : const Color.fromRGBO(255, 255, 255, 0.1),
                   borderRadius: BorderRadius.circular(19),
                 ),
                 child: Row(
@@ -239,8 +244,8 @@ class _RoomViewState extends State<RoomView>
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: isDark
-                      ? const Color.fromRGBO(255, 255, 255, 0.1)
-                      : const Color.fromRGBO(0, 0, 0, 0.2),
+                      ? const Color.fromRGBO(0, 0, 0, 0.2)
+                      : const Color.fromRGBO(255, 255, 255, 0.1),
                 ),
                 width: 32,
                 height: 32,
