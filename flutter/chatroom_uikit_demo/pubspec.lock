@@ -29,18 +29,18 @@ packages:
     dependency: transitive
     description:
       name: chat_uikit_theme
-      sha256: "3878c810af715281fc7e10c54abc90a0df7061a0cdf16ee1748ad1e1fae7a7ba"
+      sha256: d12f62b7d5696067ef2c499c22f28daf85fac588bacd54d0dfec9f86330d4d69
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.2"
+    version: "0.0.3"
   chatroom_uikit:
     dependency: "direct main"
     description:
       name: chatroom_uikit
-      sha256: a52edf4c29d20e5013a250a8dc900780b02b0a7f184085a4202c8bd6da0e41ee
+      sha256: a8ed3c4e6dfc44456aef8a9dc0ffa95d5b3a3c88f43da2786bfd13145ee85c31
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0-rc.1"
+    version: "1.0.0"
   clock:
     dependency: transitive
     description:
@@ -185,10 +185,10 @@ packages:
     dependency: transitive
     description:
       name: im_flutter_sdk
-      sha256: c752e14747f6d6051791e53ac89039e740c7d90d8eb9d78593578ef9a2069790
+      sha256: b66d8fc29c0324f50f4a4e58a260db190813846633c777093303813ec2e3d2c6
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.0-rc.1"
+    version: "4.2.0"
   intl:
     dependency: transitive
     description:

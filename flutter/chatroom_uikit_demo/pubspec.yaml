@@ -44,7 +44,10 @@ dependencies:
 
   video_player: ^2.7.0
 
-  chatroom_uikit: 1.0.0-rc.1
+  chatroom_uikit: 1.0.0
+  
+
+
 
 dev_dependencies:
   flutter_test:
@@ -92,8 +95,12 @@ flutter:
     - assets/images/speaker.png
     - assets/images/sweet_heart.png
     - assets/images/default_identify.png
+    - assets/images/dollar.png
+    - assets/images/welcome_icon.png
 
     - assets/data/Gifts_cn.json
+    - assets/data/Gifts_en.json
+    
 
     - assets/videos/video1.mp4
 

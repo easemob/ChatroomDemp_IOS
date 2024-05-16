@@ -37,6 +37,7 @@ final class BottomBar: UIView {
         self.addSubViews([self.container,self.avatar,self.userName,self.create])
         self.avatar.avatar.image(with: YourAppUser.current.avatarURL, placeHolder: Appearance.avatarPlaceHolder)
         Theme.registerSwitchThemeViews(view: self)
+        self.switchTheme(style: Theme.style)
     }
     
     required init?(coder: NSCoder) {
