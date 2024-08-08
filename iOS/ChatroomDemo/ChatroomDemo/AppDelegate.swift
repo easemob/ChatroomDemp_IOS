@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let option = ChatroomUIKitInitialOptions.ChatOptions()
+        let option = ChatOptions()
         option.enableConsoleLog = true
         let error = ChatroomUIKitClient.shared.setup(appKey: "easemob#chatroom-uikit", option: option)
         if error != nil {

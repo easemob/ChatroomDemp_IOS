@@ -13,8 +13,8 @@ import KakaJSON
 
 final class RoomViewController: UIViewController {
     
-    var option_UI: ChatroomUIKitInitialOptions.UIOptions {
-        let option = ChatroomUIKitInitialOptions.UIOptions()
+    var option_UI: UIOptions {
+        let option = UIOptions()
         option.bottomDataSource = self.bottomBarDatas()
         return option
     }
@@ -114,7 +114,7 @@ final class RoomViewController: UIViewController {
     }
     
     private func handleUserAction(user: UserInfoProtocol,muteTab: Bool) {
-        DialogManager.shared.showUserActions(actions: muteTab ? Appearance.defaultOperationMuteUserActions:Appearance.defaultOperationUserActions) { item in
+        DialogManager.shared.showUserActions(actions: muteTab ? Appearance.defaultOperationMuteUserActions:Appearance.defaultOperationUserActions) { item,object  in
             switch item.tag {
             case "Mute":
                 ChatroomUIKitClient.shared.roomService?.mute(userId: user.userId, completion: { [weak self] error in
@@ -146,7 +146,7 @@ final class RoomViewController: UIViewController {
                     }
                 }
             default:
-                item.action?(item)
+                item.action?(item, object)
             }
         }
     }
@@ -352,6 +352,8 @@ final class ChatBottomItem:NSObject, ChatBottomItemProtocol {
 }
 
 @objcMembers public class GiftEntity:NSObject,GiftEntityProtocol {
+    public var giftCount: Int = 0
+    
     
     public func toJsonObject() -> Dictionary<String, Any> {
         ["giftId":self.giftId,"giftName":self.giftName,"giftPrice":self.giftPrice,"giftCount":self.giftCount,"giftIcon":self.giftIcon,"giftEffect":self.giftEffect]
@@ -365,7 +367,6 @@ final class ChatBottomItem:NSObject, ChatBottomItemProtocol {
     
     public var giftPrice: String = ""
     
-    public var giftCount: String = "1"
     
     public var giftIcon: String = ""
     

@@ -57,7 +57,6 @@
                 {
                     "giftId": "e915438c-7fbd-4e03-840f-0036ec97c824",
                     "giftIcon": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pictures/gift/AUIKitGift10.png",
-                    "giftEffect": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pag/ballon.pag",
                     "giftName": "气球",
                     "giftPrice": "666",
                     "effectMD5": "141761700268c0290852af8f6a501c10"
@@ -65,7 +64,6 @@
                 {
                     "giftId": "0c832b52-8f2e-4202-958b-9410db2d9438",
                     "giftIcon": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pictures/gift/AUIKitGift11.png",
-                    "giftEffect": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pag/planet.pag",
                     "giftName": "星球",
                     "giftPrice": "888",
                     "effectMD5": "41f3eeff249be268004d82a1d1eaf481"
@@ -73,7 +71,6 @@
                 {
                     "giftId": "beada6a3-eae6-450e-869c-743d02fa95e7",
                     "giftIcon": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pictures/gift/AUIKitGift12.png",
-                    "giftEffect": "https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/pag/rocket.pag",
                     "giftName": "火箭",
                     "giftPrice": "1000",
                     "effectMD5": "de5094b30eebeadf8b8f5d8357a19578"
