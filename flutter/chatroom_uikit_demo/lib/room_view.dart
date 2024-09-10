@@ -142,8 +142,11 @@ class _RoomViewState extends State<RoomView>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {
-                Navigator.maybePop(context);
+              onTap: () async {
+                bool ret = await leaveRoom();
+                if (context.mounted && ret) {
+                  Navigator.maybePop(context);
+                }
               },
               child: Icon(
                 Icons.arrow_back_ios,
@@ -259,14 +262,8 @@ class _RoomViewState extends State<RoomView>
       body: content,
     );
 
-    content = WillPopScope(
+    content = PopScope(
       child: content,
-      onWillPop: () async {
-        controller.hiddenInputBar();
-        final ret = await leaveRoom();
-        canShowDialog = !ret;
-        return ret;
-      },
     );
 
     content = Stack(
@@ -320,6 +317,8 @@ class _RoomViewState extends State<RoomView>
   }
 
   Future<bool> leaveRoom() async {
+    controller.hiddenInputBar();
+
     bool ret = await showChatDialog(
           context,
           title: DemoLocal.leaveRoom.getString(context),
@@ -337,10 +336,6 @@ class _RoomViewState extends State<RoomView>
     try {
       if (controller.isOwner()) {
         await ServerTools.destroyRoom(widget.room);
-        // await ChatroomUIKitClient.instance.chatroomOperating(
-        //   roomId: widget.room.id,
-        //   type: ChatroomOperationType.destroyed,
-        // );
       } else {
         await ChatroomUIKitClient.instance.chatroomOperating(
           roomId: widget.room.id,
@@ -348,13 +343,11 @@ class _RoomViewState extends State<RoomView>
         );
       }
       await _videoPlayerController.pause();
-
       return true;
     } catch (e) {
-      // ignore: use_build_context_synchronously
       vLog(e.toString());
-      // EasyLoading.showError(DemoLocal.leaveFailed.getString(context));
-      return true;
+
+      return false;
     }
   }
 
@@ -390,7 +383,9 @@ class _RoomViewState extends State<RoomView>
           ),
         ],
       ).then((value) {
-        Navigator.of(context).pop();
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
       });
     }
   }
@@ -445,20 +440,24 @@ class _RoomViewState extends State<RoomView>
 
       if (type == RoomEventsType.join && error != null) {
         Future.delayed(const Duration(seconds: 1), () {
-          showChatDialog(
-            context,
-            title: DemoLocal.joinFailed.getString(context),
-            subTitle: error.description,
-            items: [
-              ChatDialogItem.confirm(
-                onTap: () async {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ).then((value) {
-            Navigator.of(context).pop();
-          });
+          if (mounted) {
+            showChatDialog(
+              context,
+              title: DemoLocal.joinFailed.getString(context),
+              subTitle: error.description,
+              items: [
+                ChatDialogItem.confirm(
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ).then((value) {
+              if (mounted) {
+                Navigator.of(context).pop();
+              }
+            });
+          }
         });
       }
     }
