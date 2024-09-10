@@ -28,109 +28,104 @@ class _RoomListViewState extends State<RoomListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ChatUIKitTheme.of(context).color.isDark
+          ? ChatUIKitTheme.of(context).color.neutralColor1
+          : ChatUIKitTheme.of(context).color.neutralColor95,
+      appBar: AppBar(
         backgroundColor: ChatUIKitTheme.of(context).color.isDark
             ? ChatUIKitTheme.of(context).color.neutralColor1
             : ChatUIKitTheme.of(context).color.neutralColor95,
-        appBar: AppBar(
-          backgroundColor: ChatUIKitTheme.of(context).color.isDark
-              ? ChatUIKitTheme.of(context).color.neutralColor1
-              : ChatUIKitTheme.of(context).color.neutralColor95,
-          automaticallyImplyLeading: false,
-          scrolledUnderElevation: 0,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: SizedBox(
-                width: 56,
-                height: 28,
-                child: Switch(
-                  thumbIcon: MaterialStatePropertyAll(
-                    Icon(
-                      !isNight ? Icons.bedtime : Icons.sunny,
-                      color: Colors.white,
-                    ),
+        automaticallyImplyLeading: false,
+        scrolledUnderElevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: SizedBox(
+              width: 56,
+              height: 28,
+              child: Switch(
+                thumbIcon: WidgetStatePropertyAll(
+                  Icon(
+                    !isNight ? Icons.bedtime : Icons.sunny,
+                    color: Colors.white,
                   ),
-                  trackOutlineColor:
-                      MaterialStateProperty.all(Colors.transparent),
-                  activeTrackColor:
-                      ChatUIKitTheme.of(context).color.neutralColor4,
-                  inactiveThumbColor: Colors.blue,
-                  activeColor: Colors.blue,
-                  value: !isNight,
-                  onChanged: (value) {
-                    isNight = !value;
-                    ThemeNotification(!value).dispatch(context);
-                  },
                 ),
-              ),
-            ),
-          ],
-          title: Row(
-            children: [
-              Text(
-                DemoLocal.channelList.getString(context),
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: ChatUIKitTheme.of(context).color.isDark
-                        ? ChatUIKitTheme.of(context).color.neutralColor98
-                        : ChatUIKitTheme.of(context).color.neutralColor1),
-              ),
-              ValueListenableBuilder(
-                valueListenable: isLoading,
-                builder: (context, value, child) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: () {
-                        if (!value) {
-                          return InkWell(
-                            onTap: () {
-                              fetchRoomList();
-                            },
-                            child: Image.asset(
-                              'assets/images/reload.png',
-                              fit: BoxFit.fill,
-                              color: ChatUIKitTheme.of(context).color.isDark
-                                  ? ChatUIKitTheme.of(context)
-                                      .color
-                                      .neutralColor95
-                                  : ChatUIKitTheme.of(context)
-                                      .color
-                                      .neutralColor3,
-                            ),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(3),
-                            child: CircularProgressIndicator(
-                              strokeWidth: 1.0,
-                              color: ChatUIKitTheme.of(context).color.isDark
-                                  ? ChatUIKitTheme.of(context)
-                                      .color
-                                      .neutralColor9
-                                  : ChatUIKitTheme.of(context)
-                                      .color
-                                      .neutralColor3,
-                            ),
-                          );
-                        }
-                      }(),
-                    ),
-                  );
+                trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+                activeTrackColor:
+                    ChatUIKitTheme.of(context).color.neutralColor4,
+                inactiveThumbColor: Colors.blue,
+                activeColor: Colors.blue,
+                value: !isNight,
+                onChanged: (value) {
+                  isNight = !value;
+                  ThemeNotification(!value).dispatch(context);
                 },
               ),
-            ],
+            ),
           ),
+        ],
+        title: Row(
+          children: [
+            Text(
+              DemoLocal.channelList.getString(context),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: ChatUIKitTheme.of(context).color.isDark
+                      ? ChatUIKitTheme.of(context).color.neutralColor98
+                      : ChatUIKitTheme.of(context).color.neutralColor1),
+            ),
+            ValueListenableBuilder(
+              valueListenable: isLoading,
+              builder: (context, value, child) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: () {
+                      if (!value) {
+                        return InkWell(
+                          onTap: () {
+                            fetchRoomList();
+                          },
+                          child: Image.asset(
+                            'assets/images/reload.png',
+                            fit: BoxFit.fill,
+                            color: ChatUIKitTheme.of(context).color.isDark
+                                ? ChatUIKitTheme.of(context)
+                                    .color
+                                    .neutralColor95
+                                : ChatUIKitTheme.of(context)
+                                    .color
+                                    .neutralColor3,
+                          ),
+                        );
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1.0,
+                            color: ChatUIKitTheme.of(context).color.isDark
+                                ? ChatUIKitTheme.of(context).color.neutralColor9
+                                : ChatUIKitTheme.of(context)
+                                    .color
+                                    .neutralColor3,
+                          ),
+                        );
+                      }
+                    }(),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
-        body: WillPopScope(
-          onWillPop: () async {
-            return false;
-          },
-          child: _buildContent(),
-        ));
+      ),
+      body: PopScope(
+        child: _buildContent(),
+      ),
+    );
   }
 
   Widget _buildContent() {
@@ -267,7 +262,9 @@ class _RoomListViewState extends State<RoomListView> {
       }
     } catch (e) {
       vLog(e.toString());
-      EasyLoading.showError(DemoLocal.loadFailed.getString(context));
+      if (mounted) {
+        EasyLoading.showError(DemoLocal.loadFailed.getString(context));
+      }
     }
     isLoading.value = false;
     setState(() {});
@@ -280,11 +277,13 @@ class _RoomListViewState extends State<RoomListView> {
       roomName,
       UserTool.instance.userId,
     ).then((value) {
-      Navigator.of(context)
-          .pushNamed('room_view', arguments: value)
-          .then((value) {
-        fetchRoomList();
-      });
+      if (mounted) {
+        Navigator.of(context)
+            .pushNamed('room_view', arguments: value)
+            .then((value) {
+          fetchRoomList();
+        });
+      }
     }).catchError((e) {
       EasyLoading.showError(e.toString());
     });
