@@ -167,7 +167,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void doLogin() {
     isLoading.value = true;
     login().then((value) {
-      Navigator.of(context).pushNamed('room_list_view');
+      if (mounted) {
+        Navigator.of(context).pushNamed('room_list_view');
+      }
     }).catchError((e) {
       loginFailed();
     }).onError((error, stackTrace) {

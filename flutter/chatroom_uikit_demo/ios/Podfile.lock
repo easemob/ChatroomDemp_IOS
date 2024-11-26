@@ -4,15 +4,16 @@ PODS:
   - Flutter (1.0.0)
   - flutter_localization (0.0.1):
     - Flutter
-  - HyphenateChat (4.2.0)
+  - HyphenateChat (4.7.0)
   - im_flutter_sdk (0.0.1):
     - Flutter
-    - HyphenateChat (= 4.2.0)
+    - HyphenateChat (= 4.7.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - video_player_avfoundation (0.0.1):
     - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - chatroom_uikit (from `.symlinks/plugins/chatroom_uikit/ios`)
@@ -20,7 +21,7 @@ DEPENDENCIES:
   - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - im_flutter_sdk (from `.symlinks/plugins/im_flutter_sdk/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/darwin`)
 
 SPEC REPOS:
   trunk:
@@ -38,17 +39,17 @@ EXTERNAL SOURCES:
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   video_player_avfoundation:
-    :path: ".symlinks/plugins/video_player_avfoundation/ios"
+    :path: ".symlinks/plugins/video_player_avfoundation/darwin"
 
 SPEC CHECKSUMS:
-  chatroom_uikit: 7770dee556851a0e727fbe184b750d8ef0ed5123
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  chatroom_uikit: 12c761d534c98af37001f1ad1fe0ef68bbad2a7b
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
-  HyphenateChat: e43d1ec9ccf404eeb2ee7d3265cd12a4e83f0d3a
-  im_flutter_sdk: 0012f5bb4bf59284f6b5e55059f96e60eb527328
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
+  HyphenateChat: 0d76f40cec79d084a2c1133e43987e7379124694
+  im_flutter_sdk: fcff186ef0acfb1e7b0e9ba6c5260d0f2278ede8
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  video_player_avfoundation: 7c6c11d8470e1675df7397027218274b6d2360b3
 
-PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2
