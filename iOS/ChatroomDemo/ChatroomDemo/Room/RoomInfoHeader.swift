@@ -49,7 +49,7 @@ final class RoomHeader: UIView {
     }()
     
     lazy var members: UIButton = {
-        UIButton(type: .custom).frame(CGRect(x: self.frame.width-46, y: 6, width: 30, height: 30)).image(UIImage(named: "members"), .normal).addTargetFor(self, action: #selector(membersAction), for: .touchUpInside).cornerRadius(.large).backgroundColor(UIColor.theme.barrageDarkColor2)
+        UIButton(type: .custom).frame(CGRect(x: self.frame.width-76, y: 6, width: 60, height: 30)).image(UIImage(named: "members"), .normal).addTargetFor(self, action: #selector(membersAction), for: .touchUpInside).cornerRadius(.large).backgroundColor(UIColor.theme.barrageDarkColor2).title(" 1", .normal).font(UIFont.theme.labelExtraSmall)
     }()
     
     override init(frame: CGRect) {

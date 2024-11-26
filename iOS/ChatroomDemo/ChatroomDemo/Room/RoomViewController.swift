@@ -194,6 +194,10 @@ final class RoomViewController: UIViewController {
 
 //MARK: - When you called `self.roomView.addActionHandler(actionHandler: self)`.You'll receive chatroom view's click action events callback.
 extension RoomViewController : ChatroomViewActionEventsDelegate {
+    func onPinMessageViewLongPressed(message: ChatroomUIKit.ChatMessage) {
+        //Statistical data
+    }
+    
     func onMessageClicked(message: ChatroomUIKit.ChatMessage) {
         //Statistical data
     }
@@ -239,6 +243,13 @@ extension RoomViewController: RoomEventsListener {
     func onUserLeave(roomId: String, userId: String) {
         //Statistical data
 //        self.showToast(toast: "\(ChatroomContext.shared?.usersMap?[userId]?.nickName ?? userId) was left.", duration: 3)
+        if let membersCount = ChatRoom(id: roomId)?.occupantsCount {
+            if membersCount > 1000 {
+                self.header.members.setTitle(" 999+", for: .normal)
+            } else {
+                self.header.members.setTitle(" \(membersCount)", for: .normal)
+            }
+        }
     }
     
     
@@ -277,6 +288,13 @@ extension RoomViewController: RoomEventsListener {
     }
     
     func onUserJoined(roomId: String, user: ChatroomUIKit.UserInfoProtocol) {
+        if let membersCount = ChatRoom(id: roomId)?.occupantsCount {
+            if membersCount > 1000 {
+                self.header.members.setTitle(" 999+", for: .normal)
+            } else {
+                self.header.members.setTitle(" \(membersCount)", for: .normal)
+            }
+        }
         
     }
     
